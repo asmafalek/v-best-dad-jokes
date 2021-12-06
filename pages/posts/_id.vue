@@ -28,6 +28,17 @@ export default {
     await context.store.dispatch('posts/getPost', context.params.posts)
     return { posts: context.store.state.posts.posts }
   },
+  head() {
+    return {
+      title: this.params.titre,
+      meta: [
+        { name: "twitter:title", content: this.params.titre },
+        { name: "twitter:description", content: this.params.description },
+        { name: "twitter:image", content: "https://i.imgur.com/UYP2umJ.png" },
+        { name: "twitter:card", content: "summary_large_image" }
+      ]
+    };
+  },
   computed: {
     post() {
       return this.$store.state.posts.all.find(post => post.id === this.id);
