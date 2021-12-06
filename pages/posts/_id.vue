@@ -24,6 +24,10 @@ export default {
       id: this.$route.params.id
     };
   },
+  async asyncData (context) {
+    await context.store.dispatch('posts/getPost', context.params.posts)
+    return { posts: context.store.state.posts.posts }
+  },
   computed: {
     post() {
       return this.$store.state.posts.all.find(post => post.id === this.id);

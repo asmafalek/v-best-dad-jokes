@@ -85,3 +85,16 @@ export const state = () => ({
     },
   ],
 });
+
+export const actions = {
+  async getPost ({ commit }, idPost) {
+    const res = await this.$axios.$get(`/post/${idPost}`)
+    commit('setPost', res)
+  }
+}
+
+export const mutations = {
+  setPost (state, posts) {
+    state.posts = posts
+  }
+}
